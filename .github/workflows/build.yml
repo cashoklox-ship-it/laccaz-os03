@@ -11,18 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare project
+      - name: Extract project archive
         run: |
-          chmod +x auto/config scripts/*.sh
-          chmod +x config/hooks/normal/*.hook.chroot
-          chmod +x config/includes.chroot/usr/bin/laccaz-*
-          chmod +x config/includes.chroot/usr/libexec/laccaz-package-action
-          chmod +x config/includes.chroot/lib/live/config/9999-laccaz-session
+          unzip -q laccaz-os-0.5-appcenter.zip -d source
+          test -f source/laccaz-os/auto/config
+          test -f source/laccaz-os/scripts/build.sh
 
       - name: Build ISO in Debian 13
         run: |
           docker run --rm --privileged \
-            -v "$PWD:/work" \
+            -v "$PWD/source/laccaz-os:/work" \
             -w /work \
             debian:trixie \
             bash -c '
@@ -36,8 +34,8 @@ jobs:
         with:
           name: laccaz-os-0.5-amd64
           path: |
-            artifacts/laccaz-os-0.5-amd64.iso
-            artifacts/SHA256SUMS
+            source/laccaz-os/artifacts/laccaz-os-0.5-amd64.iso
+            source/laccaz-os/artifacts/SHA256SUMS
           if-no-files-found: error
           compression-level: 0
 
@@ -46,5 +44,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-logs
-          path: artifacts/*.log
+          path: source/laccaz-os/artifacts/*.log
           if-no-files-found: ignore
