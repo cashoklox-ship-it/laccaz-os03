@@ -1,0 +1,50 @@
+name: Build Laccaz OS 0.5
+
+on:
+  workflow_dispatch:
+
+jobs:
+  iso:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare project
+        run: |
+          chmod +x auto/config scripts/*.sh
+          chmod +x config/hooks/normal/*.hook.chroot
+          chmod +x config/includes.chroot/usr/bin/laccaz-*
+          chmod +x config/includes.chroot/usr/libexec/laccaz-package-action
+          chmod +x config/includes.chroot/lib/live/config/9999-laccaz-session
+
+      - name: Build ISO in Debian 13
+        run: |
+          docker run --rm --privileged \
+            -v "$PWD:/work" \
+            -w /work \
+            debian:trixie \
+            bash -c '
+              apt-get update &&
+              apt-get install -y live-build debootstrap debian-archive-keyring xorriso squashfs-tools dosfstools mtools syslinux-common isolinux grub-pc-bin grub-efi-amd64-bin ca-certificates &&
+              bash scripts/build.sh
+            '
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: laccaz-os-0.5-amd64
+          path: |
+            artifacts/laccaz-os-0.5-amd64.iso
+            artifacts/SHA256SUMS
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: artifacts/*.log
+          if-no-files-found: ignore
