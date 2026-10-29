@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+state="${XDG_STATE_HOME:-$HOME/.local/state}/laccaz"
+mkdir -p "$state"
+if [ ! -f "$state/welcomed" ]; then
+ touch "$state/welcomed"
+ exec laccaz-devhub
+fi

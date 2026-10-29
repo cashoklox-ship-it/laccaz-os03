@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Laccaz Surface (X11 Preview)
+Comment=Laccaz workspace, launcher and clipboard
+Exec=/usr/bin/laccaz-session
+TryExec=/usr/bin/laccaz-session
+Type=Application
+DesktopNames=Laccaz

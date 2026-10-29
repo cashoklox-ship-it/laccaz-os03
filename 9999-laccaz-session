@@ -1,0 +1,12 @@
+#!/bin/sh
+# Runs after the standard live-config display-manager setup.
+set -eu
+python3 - <<'CONF'
+from pathlib import Path
+import configparser
+p=Path('/etc/sddm.conf');c=configparser.ConfigParser(interpolation=None,strict=False);c.optionxform=str
+if p.exists():c.read(p)
+if not c.has_section('Autologin'):c.add_section('Autologin')
+c.set('Autologin','Session','laccaz.desktop')
+with p.open('w') as f:c.write(f)
+CONF

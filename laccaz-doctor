@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+import shutil,subprocess
+for cmd in ['python3','gcc','g++','clang','cmake','git','node','npm','docker','sqlite3','psql','kate','konsole']:
+ path=shutil.which(cmd)
+ if not path:print(f'MISSING {cmd}');continue
+ try:
+  r=subprocess.run([path,'--version'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=8)
+  print(f'{cmd:12} {r.stdout.splitlines()[0] if r.stdout else path}')
+ except Exception as e:print(cmd,str(e))

@@ -1,0 +1,29 @@
+#!/usr/bin/python3 -I
+"""Small root helper. Fixed catalogue, fixed argv, no shell, no root GUI."""
+import json,os,re,subprocess,sys
+from pathlib import Path
+CATALOG=Path('/usr/share/laccaz/catalog.json')
+def command(action,package,allowed):
+ if action=='refresh':
+  if package:raise ValueError('Unexpected argument')
+  return ['/usr/bin/apt-get','update']
+ if action not in ('install','remove') or package not in allowed or not re.fullmatch(r'[a-z0-9][a-z0-9+.-]*',package):raise ValueError('Application/action is not in the catalogue')
+ if action=='install':return ['/usr/bin/apt-get','--yes','--no-remove','install',package]
+ return ['/usr/bin/apt-get','--yes','--no-auto-remove','remove',package]
+def main(argv):
+ if os.geteuid()!=0:raise ValueError('Administrator authorization is required')
+ if not 1<=len(argv)<=2:raise ValueError('Invalid arguments')
+ for path in (CATALOG.parent,CATALOG):
+  stat=path.stat()
+  if path.is_symlink() or stat.st_uid!=0 or stat.st_mode&0o022:raise ValueError('Catalogue ownership/permissions are unsafe')
+ allowed={a['package'] for a in json.loads(CATALOG.read_text())};action=argv[0];package=argv[1] if len(argv)>1 else None;cmd=command(action,package,allowed)
+ env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','HOME':'/root','LC_ALL':'C.UTF-8','DEBIAN_FRONTEND':'noninteractive'}
+ if action=='remove':
+  probe=subprocess.run(['/usr/bin/apt-get','--simulate','remove',package],env=env,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+  if probe.returncode:print(probe.stdout);return probe.returncode
+  removals={line.split()[1] for line in probe.stdout.splitlines() if line.startswith('Remv ')}
+  if removals-{package}:raise ValueError('Removal would affect other packages: '+', '.join(sorted(removals-{package}))+'. Use the system package manager.')
+ return subprocess.run(cmd,env=env).returncode
+if __name__=='__main__':
+ try:sys.exit(main(sys.argv[1:]))
+ except (ValueError,OSError,KeyError) as e:print('Laccaz App Center:',str(e),file=sys.stderr);sys.exit(2)

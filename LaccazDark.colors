@@ -1,0 +1,26 @@
+[General]
+Name=Laccaz Dark
+ColorScheme=LaccazDark
+[Colors:Window]
+BackgroundNormal=16,18,20
+ForegroundNormal=232,235,229
+[Colors:View]
+BackgroundNormal=22,26,23
+BackgroundAlternate=29,34,29
+ForegroundNormal=232,235,229
+ForegroundInactive=150,159,145
+ForegroundLink=183,239,98
+[Colors:Button]
+BackgroundNormal=35,41,35
+ForegroundNormal=232,235,229
+[Colors:Selection]
+BackgroundNormal=183,239,98
+ForegroundNormal=16,18,20
+[Colors:Tooltip]
+BackgroundNormal=29,34,29
+ForegroundNormal=232,235,229
+[WM]
+activeBackground=16,18,20
+activeForeground=232,235,229
+inactiveBackground=22,26,23
+inactiveForeground=150,159,145

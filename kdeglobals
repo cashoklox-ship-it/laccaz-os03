@@ -1,0 +1,9 @@
+[General]
+ColorScheme=BreezeLight
+font=Noto Sans,10,-1,5,50,0,0,0,0,0
+fixed=JetBrains Mono,10,-1,5,50,0,0,0,0,0
+[KDE]
+LookAndFeelPackage=org.kde.breeze.desktop
+widgetStyle=Breeze
+[Icons]
+Theme=breeze

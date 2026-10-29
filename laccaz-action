@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+import sys
+sys.path.insert(0,'/usr/share/laccaz')
+from surface_ipc import send
+try:send(sys.argv[1])
+except Exception as e:print('Laccaz:',e,file=sys.stderr);sys.exit(1)

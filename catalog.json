@@ -1,0 +1,142 @@
+[
+  {
+    "package": "vlc",
+    "name": "VLC",
+    "category": "Видео и звук",
+    "summary": "Универсальный видеоплеер",
+    "exec": "vlc"
+  },
+  {
+    "package": "gimp",
+    "name": "GIMP",
+    "category": "Творчество",
+    "summary": "Редактор фотографий и изображений",
+    "exec": "gimp"
+  },
+  {
+    "package": "inkscape",
+    "name": "Inkscape",
+    "category": "Творчество",
+    "summary": "Векторная графика и иллюстрации",
+    "exec": "inkscape"
+  },
+  {
+    "package": "blender",
+    "name": "Blender",
+    "category": "Творчество",
+    "summary": "3D-моделирование и анимация",
+    "exec": "blender"
+  },
+  {
+    "package": "krita",
+    "name": "Krita",
+    "category": "Творчество",
+    "summary": "Цифровая живопись",
+    "exec": "krita"
+  },
+  {
+    "package": "audacity",
+    "name": "Audacity",
+    "category": "Видео и звук",
+    "summary": "Запись и редактирование аудио",
+    "exec": "audacity"
+  },
+  {
+    "package": "obs-studio",
+    "name": "OBS Studio",
+    "category": "Видео и звук",
+    "summary": "Запись экрана и трансляции",
+    "exec": "obs"
+  },
+  {
+    "package": "geany",
+    "name": "Geany",
+    "category": "Разработка",
+    "summary": "Лёгкий редактор кода",
+    "exec": "geany"
+  },
+  {
+    "package": "codeblocks",
+    "name": "Code::Blocks",
+    "category": "Разработка",
+    "summary": "Среда разработки C и C++",
+    "exec": "codeblocks"
+  },
+  {
+    "package": "kdevelop",
+    "name": "KDevelop",
+    "category": "Разработка",
+    "summary": "Разработка и навигация по коду",
+    "exec": "kdevelop"
+  },
+  {
+    "package": "sqlitebrowser",
+    "name": "DB Browser for SQLite",
+    "category": "Разработка",
+    "summary": "Просмотр и редактирование SQLite",
+    "exec": "sqlitebrowser"
+  },
+  {
+    "package": "meld",
+    "name": "Meld",
+    "category": "Разработка",
+    "summary": "Сравнение файлов и каталогов",
+    "exec": "meld"
+  },
+  {
+    "package": "filezilla",
+    "name": "FileZilla",
+    "category": "Интернет",
+    "summary": "Передача файлов по SFTP и FTP",
+    "exec": "filezilla"
+  },
+  {
+    "package": "keepassxc",
+    "name": "KeePassXC",
+    "category": "Утилиты",
+    "summary": "Локальный менеджер паролей",
+    "exec": "keepassxc"
+  },
+  {
+    "package": "thunderbird",
+    "name": "Thunderbird",
+    "category": "Интернет",
+    "summary": "Почта, контакты и календарь",
+    "exec": "thunderbird"
+  },
+  {
+    "package": "libreoffice",
+    "name": "LibreOffice",
+    "category": "Работа",
+    "summary": "Документы, таблицы и презентации",
+    "exec": "libreoffice"
+  },
+  {
+    "package": "kdenlive",
+    "name": "Kdenlive",
+    "category": "Видео и звук",
+    "summary": "Монтаж видео",
+    "exec": "kdenlive"
+  },
+  {
+    "package": "flameshot",
+    "name": "Flameshot",
+    "category": "Утилиты",
+    "summary": "Снимки экрана с пометками",
+    "exec": "flameshot"
+  },
+  {
+    "package": "htop",
+    "name": "htop",
+    "category": "Утилиты",
+    "summary": "Монитор процессов в терминале",
+    "exec": "htop"
+  },
+  {
+    "package": "wireshark",
+    "name": "Wireshark",
+    "category": "Разработка",
+    "summary": "Анализ сетевых пакетов; захват требует настройки прав",
+    "exec": "wireshark"
+  }
+]

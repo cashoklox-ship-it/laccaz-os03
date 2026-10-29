@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+# Preserve Debian ID/version so Debian-aware tools keep working.
+sed -i 's/^PRETTY_NAME=.*/PRETTY_NAME="Laccaz OS 0.5 (Debian 13)"/' /usr/lib/os-release
+printf 'Laccaz OS 0.5 Developer Preview\nBased on Debian 13 (trixie)\n' > /etc/laccaz-release
+printf 'Laccaz OS 0.5 \n \l\n' > /etc/issue
+systemctl enable NetworkManager.service sddm.service
+# Docker remains available through sudo; no automatic docker-group privilege grant.
+
+mkdir -p /etc/skel/.config
+cp /usr/share/laccaz/kdeglobals.ini /etc/skel/.config/kdeglobals
+
+chown -R root:root /usr/share/laccaz /usr/share/themes/Laccaz /etc/xdg/laccaz
+chown root:root /usr/libexec/laccaz-package-action /usr/bin/laccaz-* /usr/share/polkit-1/actions/org.laccaz.packages.policy
+chmod 0755 /usr/libexec/laccaz-package-action
+chmod 0644 /usr/share/laccaz/catalog.json
+chmod 0755 /usr/share/laccaz

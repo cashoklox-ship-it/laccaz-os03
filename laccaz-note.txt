@@ -1,0 +1,1 @@
+Laccaz uses the KDE Breeze Dark desktop theme and LaccazDark color scheme.

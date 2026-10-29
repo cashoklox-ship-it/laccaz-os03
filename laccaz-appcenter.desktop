@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Laccaz App Center
+Name[ru]=Центр приложений Laccaz
+Exec=laccaz-appcenter
+Icon=system-software-install
+Categories=System;PackageManager;
+Terminal=false

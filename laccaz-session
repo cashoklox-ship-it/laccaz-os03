@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+export XDG_CURRENT_DESKTOP=Laccaz
+export XDG_SESSION_DESKTOP=laccaz
+export QT_QPA_PLATFORM=xcb
+openbox --config-file /etc/xdg/laccaz/openbox.xml &
+wm_pid=$!
+trap 'kill "$wm_pid" 2>/dev/null || true' EXIT
+picom --config /etc/xdg/laccaz/picom.conf &
+compositor_pid=$!
+trap 'kill "$wm_pid" "$compositor_pid" 2>/dev/null || true' EXIT
+lxqt-policykit-agent &
+agent_pid=$!
+trap 'kill "$wm_pid" "$compositor_pid" "$agent_pid" 2>/dev/null || true' EXIT
+laccaz-shell

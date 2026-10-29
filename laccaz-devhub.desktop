@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Laccaz Dev Hub
+Comment=Projects, terminal and development tools
+Exec=laccaz-devhub
+Icon=applications-development
+Categories=Development;
+Terminal=false
